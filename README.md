@@ -37,12 +37,11 @@ Same controller, plus a few lines of Python that block ICMP (ping). No CLI on th
 | Test | Result |
 |---|---|
 | `pingall` (learning switch) | 0% dropped |
-| First ping | ~2.3 ms (went through the controller) |
-| Later pings | ~0.05 ms (switch used the installed rule) |
+| First ping | ~33 ms (went through the controller) |
+| Later pings | ~0.08 ms (switch used the installed rule) |
 | `ping` with firewall | 100% packet loss |
-| TCP traffic (`iperf`) with firewall | Works |
 
-The first packet is slow because the controller has to think. After that, the switch handles it alone, about **40x faster**.
+The first packet is slow because the controller has to decide. After that, the switch forwards on its own using the installed rule.
 
 ---
 
@@ -67,7 +66,17 @@ mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s1
 
 ## 📸 Screenshots
 
-_Add your screenshots here (controller logs, ping results, dump-flows)._
+**Learning switch: first ping goes through the controller, later pings are fast**
+
+![Learning switch](images/learning-switch.png)
+
+**Firewall: the controller blocks ICMP**
+
+![Firewall: controller blocks ICMP](images/firewall-controller.png)
+
+**Firewall: ping gets 100% packet loss**
+
+![Firewall: ping gets 100% loss](images/firewall-ping.png)
 
 ---
 
@@ -80,6 +89,7 @@ _Add your screenshots here (controller logs, ping results, dump-flows)._
 
 ## 🔭 Next Ideas
 
+- [ ] Test that TCP traffic (`iperf`) still passes through the firewall
 - [ ] Load balancer across two servers
 - [ ] Traffic monitoring dashboard with Flask
 - [ ] Block specific ports instead of all ICMP

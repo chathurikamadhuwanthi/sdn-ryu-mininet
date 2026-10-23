@@ -68,15 +68,15 @@ mininet> sh ovs-ofctl -O OpenFlow13 dump-flows s1
 
 **Learning switch: first ping goes through the controller, later pings are fast**
 
-![Learning switch](images/learning-switch.png)
+![Learning switch](images/learning-switch.png.png)
 
 **Firewall: the controller blocks ICMP**
 
-![Firewall: controller blocks ICMP](images/firewall-controller.png)
+![Firewall: controller blocks ICMP](images/firewall-controller.png.png)
 
 **Firewall: ping gets 100% packet loss**
 
-![Firewall: ping gets 100% loss](images/firewall-ping.png)
+![Firewall: ping gets 100% loss](images/firewall-ping.png.png)
 
 ---
 
